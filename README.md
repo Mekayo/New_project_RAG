@@ -1,1 +1,52 @@
-# New_project_RAG
+# Healthcare RAG Assistant
+
+Healthcare-focused Retrieval-Augmented Generation assistant using local embeddings, ChromaDB, and Groq-hosted Qwen.
+
+## Features
+
+- Upload and index medical PDFs
+- Pull abstracts from PubMed directly
+- Persistent ChromaDB vector storage
+- Qwen 2.5 32B via Groq for grounded answers
+- Streamlit chat UI with source citations
+- Summarization mode for indexed context
+
+## Project Structure
+
+- `app/config.py` central settings loader
+- `app/ingestion` PDF and PubMed ingestion pipeline
+- `app/retrieval` vector store and retriever logic
+- `app/generation` LLM, prompts, and chain wiring
+- `app/ui` sidebar and chat components
+- `app/main.py` Streamlit entrypoint
+- `tests/` unit tests
+- `notebooks/` exploration and evaluation notebooks
+- `agent_api/` folder reserved for your API files
+
+## Setup
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+pip install -e .
+copy .env.example .env
+```
+
+Fill `GROQ_API_KEY` in `.env`.
+For PubMed, set a real `NCBI_EMAIL` in `.env` (NCBI requests this for API usage).
+Set `LLM_MODEL` to a model ID that exists on Groq today (see [Groq supported models](https://console.groq.com/docs/models)). The repo default is `llama-3.3-70b-versatile`.
+Keep `pyarrow==14.0.2` as specified in `requirements.txt` to avoid a known `sentence-transformers` + `datasets` import issue on Windows.
+
+## Run
+
+```powershell
+python -m streamlit run app/main.py
+```
+
+## Test
+
+```powershell
+python -m pytest tests -v
+```
