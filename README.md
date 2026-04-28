@@ -2,6 +2,7 @@
 
 Healthcare-focused Retrieval-Augmented Generation assistant using local embeddings, ChromaDB, and Groq-hosted Qwen.
 
+# LINK TO WEB-PAGE:- https://health-care-rag-app-dmp2qbrozd6jqytd6wzj9p.streamlit.app/  
 ## Features
 
 - Upload and index medical PDFs
@@ -22,16 +23,14 @@ Healthcare-focused Retrieval-Augmented Generation assistant using local embeddin
 - `tests/` unit tests
 - `notebooks/` exploration and evaluation notebooks
 - `agent_api/` folder reserved for your API files
-
-## Setup
-
+# if your are forking it in your system
+-`create your own venv using python command `
+-`install requirements using `
 ```powershell
-python -m venv .venv
-.venv\Scripts\activate
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-pip install -r requirements.txt
-pip install -e .
-copy .env.example .env
+uv pip instal -r requirements.txt
+#or
+pip instal -r requirements.txt
+#if uv is not installed 
 ```
 
 Fill `GROQ_API_KEY` in `.env`.
