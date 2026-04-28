@@ -1,3 +1,4 @@
+import streamlit as st
 from pathlib import Path
 from typing import Dict, List
 
@@ -23,6 +24,7 @@ def create_vectorstore(chunks: List[Document]) -> Chroma:
     )
 
 
+@st.cache_resource
 def load_vectorstore() -> Chroma:
     Path(VECTOR_DB_PATH).mkdir(parents=True, exist_ok=True)
     embedding = get_embedder()
