@@ -48,7 +48,7 @@ def render_chat(settings):
                     sources = docs
                 else:
                     chain = build_rag_chain(top_k=settings["top_k"], temperature=settings["temperature"])
-                    result = chain({"query": user_query})
+                    result = chain.invoke({"query": user_query})
                     answer = result["result"]
                     sources = result.get("source_documents", [])
             except Exception as exc:
